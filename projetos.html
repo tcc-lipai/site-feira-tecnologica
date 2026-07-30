@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projetos da Turma | ETEC MCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+  :root{--lavender:#E9E8F2;--gray-blue:#8D9DB8;--light-blue:#B7CBEA;--navy:#1E2A54;--steel-blue:#45678C;--white:#FFFFFF;--red:#C1272D;--text-dark:#1E2A54;--text-light:#7280A0;--radius:18px;--shadow:0 10px 30px rgba(30,42,84,.08);--transition:all .3s ease;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Poppins',sans-serif;background:var(--lavender);color:var(--text-dark);min-height:100vh;}
+  main{max-width:1200px;margin:0 auto;padding:0 24px; animation:fadeIn .4s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  
+  .main-header{position:sticky;top:0;z-index:999;background:#fff;box-shadow:0 2px 20px rgba(30,42,84,.07);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;}
+  .header-left{display:flex;align-items:center;gap:14px; text-decoration:none;}
+  .logo-etec{width:56px;height:56px;border-radius:50%;border:4px solid var(--red);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+  .logo-etec .etec-text{font-size:6px;font-weight:700;color:var(--red);letter-spacing:1px;}
+  .logo-etec .line{width:60%;height:1px;background:var(--red);margin:1px 0;}
+  .logo-etec .mcm-text{font-size:14px;font-weight:800;color:var(--red);line-height:1;}
+  .header-left h1{font-size:15px;color:var(--navy);font-weight:700;}
+  .header-left p{font-size:11px;color:var(--text-light);}
+  .header-right{display:flex;align-items:center;gap:14px;}
+  .user-chip{display:flex;align-items:center;gap:10px;background:var(--lavender);padding:8px 18px 8px 8px;border-radius:50px;}
+  .user-chip .avatar-chip{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+  .user-chip span{font-size:13px;font-weight:600;color:var(--navy);text-transform:capitalize;}
+  .icon-btn{width:42px;height:42px;border-radius:50%;border:none;background:var(--lavender);color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);font-size:18px;}
+  .icon-btn:hover{background:var(--navy);color:#fff;}
+  
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--steel-blue);font-weight:600;font-size:14px;margin:26px 0 4px;cursor:pointer;background:none;border:none;font-family:inherit;text-decoration:none;}
+  .back-link:hover{color:var(--navy);}
+  .breadcrumb-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:24px 0 6px;font-size:13px;color:var(--text-light);font-weight:600;}
+  .breadcrumb-bar .active-crumb{color:var(--navy);}
+  .breadcrumb-bar i{font-size:9px;}
+  
+  .page-heading{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:32px;}
+  .page-heading h2{font-size:27px;color:var(--navy);font-weight:800;}
+  .page-heading p{color:var(--text-light);font-size:13.5px;margin-top:6px;}
+  
+  .search-bar{position:relative;margin-bottom:28px;max-width:420px;}
+  .search-bar i{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--gray-blue);}
+  .search-bar input{width:100%;padding:14px 18px 14px 46px;border-radius:50px;border:2px solid #fff;box-shadow:var(--shadow);font-family:inherit;font-size:14px;color:var(--navy);background:#fff;}
+  .search-bar input:focus{outline:none;border-color:var(--steel-blue);}
+  
+  .projetos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding-bottom:60px;}
+  .projeto-card{background:#fff;border-radius:18px;padding:26px;box-shadow:var(--shadow);cursor:pointer;transition:var(--transition);}
+  .projeto-card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(30,42,84,.14);}
+  .projeto-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+  .status-badge{font-size:11px;font-weight:700;padding:5px 12px;border-radius:50px;display:flex;align-items:center;gap:6px;}
+  .status-pendente{background:var(--lavender);color:var(--gray-blue);}
+  .status-avaliado{background:var(--navy);color:#fff;}
+  .card-icon{width:48px;height:48px;border-radius:14px;background:var(--lavender);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--navy);}
+  .projeto-card h3{color:var(--navy);font-size:17px;margin-bottom:10px;}
+  .integrantes-mini{display:flex;align-items:center;gap:8px;color:var(--text-light);font-size:12.5px;margin-bottom:8px;}
+  .desc-mini{color:var(--text-light);font-size:13px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .no-results{color:var(--text-light);grid-column:1/-1;text-align:center;padding:50px 0;font-size:14px;}
+  
+  footer{text-align:center;padding:34px;color:var(--text-light);font-size:12.5px;}
+  @media(max-width:900px){.projetos-grid{grid-template-columns:1fr;}.main-header{padding:14px 18px;}.header-left p{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="main-header">
+  <a href="index.html" class="header-left">
+    <div class="logo-etec">
+      <span class="etec-text">ETEC</span>
+      <span class="line"></span>
+      <span class="mcm-text">MCM</span>
+    </div>
+    <div>
+      <h1>Quinta Feira Tecnológica</h1>
+      <p>Sistema de Avaliação de Projetos - ETEC MCM</p>
+    </div>
+  </a>
+  <div class="header-right">
+    <div class="user-chip" id="userChip">
+      <div class="avatar-chip"><i class="bi bi-person-fill"></i></div>
+      <span id="userNameDisplay">Professor</span>
+    </div>
+    <button class="icon-btn" title="Sair" onclick="sairSistema()"><i class="bi bi-box-arrow-right"></i></button>
+  </div>
+</header>
+
+<main>
+  <a href="turmas.html" class="back-link"><i class="bi bi-arrow-left"></i> Voltar</a>
+
+  <div class="breadcrumb-bar">
+    <span>Período</span><i class="bi bi-chevron-right"></i>
+    <span id="crumbPeriodo2">Manhã</span><i class="bi bi-chevron-right"></i>
+    <span class="active-crumb" id="turmaAtualLabel">1º DS A</span>
+  </div>
+
+  <div class="page-heading">
+    <div>
+      <h2>Projetos da Turma</h2>
+      <p>Pesquise e selecione um projeto para iniciar a avaliação</p>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <i class="bi bi-search"></i>
+    <input type="text" id="searchProjeto" placeholder="Pesquisar projeto pelo nome...">
+  </div>
+
+  <div class="projetos-grid" id="projetosGrid"></div>
+</main>
+
+<footer>ETEC Professora Maria Cristina Medeiros — Quinta Feira Tecnológica © 2024</footer>
+
+<script>
+  // Dados Simulados
+  const projetosData = {
+    t1: [
+      {id:'p1', nome:'EcoSense', integrantes:['Ana Beatriz Silva','Bruno Costa Lima','Carla Dias Souza'], descricao:'Sistema IoT para monitoramento da qualidade do ar e níveis de poluição em tempo real, com alertas automáticos para a comunidade escolar.', status:'pendente'},
+      {id:'p2', nome:'SafeRoute', integrantes:['Diego Alves','Elisa Souza Martins'], descricao:'Aplicativo mobile que sugere as rotas mais seguras para estudantes, utilizando dados de iluminação pública e ocorrências registradas.', status:'avaliado'},
+      {id:'p3', nome:'MedConnect', integrantes:['Fernanda Rocha','Gustavo Pereira','Helena Martins','Igor Fernandes'], descricao:'Plataforma de agendamento e teleorientação para unidades básicas de saúde, otimizando as filas de atendimento.', status:'pendente'},
+      {id:'p4', nome:'AgroTech Sensor', integrantes:['Julia Nogueira','Kevin Ramos'], descricao:'Sensor de umidade do solo integrado a um painel web para pequenos produtores rurais da região.', status:'pendente'},
+      {id:'p5', nome:'LibraSign', integrantes:['Larissa Tavares','Marcos Vinícius','Natália Cardoso'], descricao:'Aplicativo tradutor de Libras em tempo real utilizando reconhecimento de gestos por câmera.', status:'avaliado'}
+    ],
+    t2: [
+      {id:'p6', nome:'FinançasJá', integrantes:['Otávio Barbosa','Patrícia Lima'], descricao:'Sistema de controle financeiro pessoal voltado para jovens, com metas de economia gamificadas.', status:'pendente'},
+      {id:'p7', nome:'GestorPME', integrantes:['Quésia Ferreira','Rafael Souza','Sabrina Almeida'], descricao:'Plataforma de gestão administrativa simplificada para micro e pequenas empresas locais.', status:'avaliado'}
+    ]
+  };
+
+  function getProjetos(turmaId){
+    if(projetosData[turmaId]) return projetosData[turmaId];
+    return [1,2,3].map(n => ({
+      id: turmaId+'_'+n,
+      nome: 'Projeto Integrador '+n,
+      integrantes:['Integrante A','Integrante B','Integrante C'],
+      descricao:'Projeto desenvolvido pelos alunos para apresentação na Quinta Feira Tecnológica, unindo teoria e prática do curso técnico.',
+      status: n===2 ? 'avaliado' : 'pendente'
+    }));
+  }
+
+  let turmaId = '';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const userName = localStorage.getItem('userName');
+    if (userName) document.getElementById('userNameDisplay').textContent = userName;
+
+    const periodo = localStorage.getItem('periodo') || 'Manhã';
+    const turmaNome = localStorage.getItem('turmaNome') || '1º DS A';
+    turmaId = localStorage.getItem('turmaId') || 't1';
+
+    document.getElementById('crumbPeriodo2').textContent = periodo;
+    document.getElementById('turmaAtualLabel').textContent = turmaNome;
+
+    renderProjetos(turmaId);
+  });
+
+  function sairSistema(){
+    localStorage.clear();
+    window.location.href = 'index.html';
+  }
+
+  function renderProjetos(tId, filtro=''){
+    const grid = document.getElementById('projetosGrid');
+    let lista = getProjetos(tId);
+    
+    if(filtro){
+      lista = lista.filter(p => p.nome.toLowerCase().includes(filtro.toLowerCase()));
+    }
+    
+    if(lista.length === 0){
+      grid.innerHTML = `<p class="no-results"><i class="bi bi-search"></i> Nenhum projeto encontrado.</p>`;
+      return;
+    }
+    
+    grid.innerHTML = lista.map(p => `
+      <div class="projeto-card" onclick="abrirProjeto('${p.id}')">
+        <div class="projeto-card-top">
+          <div class="card-icon"><i class="bi bi-kanban-fill"></i></div>
+          <span class="status-badge ${p.status === 'avaliado' ? 'status-avaliado' : 'status-pendente'}">
+            <i class="bi ${p.status === 'avaliado' ? 'bi-check-circle-fill' : 'bi-clock-fill'}"></i>
+            ${p.status === 'avaliado' ? 'Avaliado' : 'Pendente'}
+          </span>
+        </div>
+        <h3>${p.nome}</h3>
+        <div class="integrantes-mini"><i class="bi bi-person-fill"></i> ${p.integrantes.length} integrantes</div>
+        <p class="desc-mini">${p.descricao}</p>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('searchProjeto').addEventListener('input', function(){
+    renderProjetos(turmaId, this.value);
+  });
+
+  function abrirProjeto(id){
+    localStorage.setItem('projetoId', id);
+    window.location.href = 'projeto.html';
+  }
+</script>
+</body>
+</html>

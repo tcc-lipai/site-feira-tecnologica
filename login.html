@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login do Professor | ETEC MCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+  :root{--lavender:#E9E8F2;--gray-blue:#8D9DB8;--light-blue:#B7CBEA;--navy:#1E2A54;--steel-blue:#45678C;--white:#FFFFFF;--red:#C1272D;--text-dark:#1E2A54;--text-light:#7280A0;--radius:18px;--shadow:0 10px 30px rgba(30,42,84,.08);--transition:all .3s ease;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Poppins',sans-serif;background:var(--lavender);color:var(--text-dark);min-height:100vh;}
+  main{max-width:1200px;margin:0 auto;padding:0 24px; animation:fadeIn .4s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  
+  .main-header{position:sticky;top:0;z-index:999;background:#fff;box-shadow:0 2px 20px rgba(30,42,84,.07);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;}
+  .header-left{display:flex;align-items:center;gap:14px; text-decoration:none;}
+  .logo-etec{width:56px;height:56px;border-radius:50%;border:4px solid var(--red);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+  .logo-etec .etec-text{font-size:6px;font-weight:700;color:var(--red);letter-spacing:1px;}
+  .logo-etec .line{width:60%;height:1px;background:var(--red);margin:1px 0;}
+  .logo-etec .mcm-text{font-size:14px;font-weight:800;color:var(--red);line-height:1;}
+  .header-left h1{font-size:15px;color:var(--navy);font-weight:700;}
+  .header-left p{font-size:11px;color:var(--text-light);}
+  
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:600;transition:var(--transition);text-decoration:none;}
+  .btn-primary{background:linear-gradient(135deg,var(--navy),var(--steel-blue));color:#fff;padding:14px 32px;border-radius:50px;font-size:14px;}
+  .btn-primary:hover{opacity:.92;transform:translateY(-2px);box-shadow:0 10px 24px rgba(30,42,84,.25);}
+  .btn-block{width:100%; display:block;}
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--steel-blue);font-weight:600;font-size:14px;margin:26px 0 4px;cursor:pointer;background:none;border:none;font-family:inherit;text-decoration:none;}
+  .back-link:hover{color:var(--navy);}
+  
+  .auth-wrapper{display:flex;justify-content:center;align-items:center;min-height:75vh;padding:40px 0;}
+  .auth-card{background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:48px 44px;max-width:440px;width:100%;}
+  .auth-card .logo-etec{margin:0 auto 18px;width:66px;height:66px;}
+  .auth-card .logo-etec .mcm-text{font-size:16px;}
+  .auth-card h2{text-align:center;font-size:23px;color:var(--navy);font-weight:800;margin-bottom:6px;}
+  .auth-card p.subtitle{text-align:center;color:var(--text-light);font-size:13.5px;margin-bottom:30px;}
+  
+  .form-group{margin-bottom:20px;}
+  .form-group label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:8px;}
+  .input-wrap{position:relative;}
+  .input-wrap i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--gray-blue);font-size:16px;}
+  .input-wrap input{width:100%;padding:13px 16px 13px 44px;border:2px solid var(--lavender);border-radius:12px;font-size:14px;font-family:inherit;color:var(--navy);background:#fbfbfe;transition:var(--transition);}
+  .input-wrap input:focus{outline:none;border-color:var(--steel-blue);background:#fff;}
+  .form-hint{font-size:11.5px;color:var(--text-light);margin-top:6px;display:flex;align-items:center;gap:6px;}
+  
+  footer{text-align:center;padding:34px;color:var(--text-light);font-size:12.5px;}
+  @media(max-width:900px){.main-header{padding:14px 18px;}.header-left p{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="main-header">
+  <a href="index.html" class="header-left">
+    <div class="logo-etec">
+      <span class="etec-text">ETEC</span>
+      <span class="line"></span>
+      <span class="mcm-text">MCM</span>
+    </div>
+    <div>
+      <h1>Quinta Feira Tecnológica</h1>
+      <p>Sistema de Avaliação de Projetos - ETEC MCM</p>
+    </div>
+  </a>
+</header>
+
+<main>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="logo-etec">
+        <span class="etec-text">ETEC</span>
+        <span class="line"></span>
+        <span class="mcm-text">MCM</span>
+      </div>
+      <h2>Login do Professor</h2>
+      <p class="subtitle">Acesse com suas credenciais institucionais</p>
+
+      <form onsubmit="fazerLogin(event)">
+        <div class="form-group">
+          <label>E-mail institucional</label>
+          <div class="input-wrap">
+            <i class="bi bi-envelope-fill"></i>
+            <input type="email" id="inputEmail" placeholder="professor@etec.sp.gov.br" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Matrícula</label>
+          <div class="input-wrap">
+            <i class="bi bi-person-vcard-fill"></i>
+            <input type="text" id="inputMatricula" placeholder="Digite sua matrícula" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Senha</label>
+          <div class="input-wrap">
+            <i class="bi bi-lock-fill"></i>
+            <input type="password" id="inputSenha" placeholder="Senha padrão" required>
+          </div>
+          <p class="form-hint"><i class="bi bi-info-circle"></i> No primeiro acesso, utilize a senha padrão fornecida pela secretaria.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Entrar <i class="bi bi-box-arrow-in-right"></i></button>
+      </form>
+
+      <a href="index.html" class="back-link" style="margin:24px auto 0;display:flex; justify-content:center;">
+        <i class="bi bi-arrow-left"></i> Voltar para seleção de perfil
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>ETEC Professora Maria Cristina Medeiros — Quinta Feira Tecnológica © 2024</footer>
+
+<script>
+  function fazerLogin(e){
+    e.preventDefault();
+    const email = document.getElementById('inputEmail').value || 'professor@etec.sp.gov.br';
+    const nome = email.split('@')[0].replace(/[.\-_]/g,' ');
+    
+    // Salva o nome do professor no localStorage para ser acessado nas outras telas
+    localStorage.setItem('userName', nome);
+    window.location.href = 'periodos.html';
+  }
+</script>
+</body>
+</html>
